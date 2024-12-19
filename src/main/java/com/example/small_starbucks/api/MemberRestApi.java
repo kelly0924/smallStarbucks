@@ -7,9 +7,7 @@ import org.antlr.v4.runtime.misc.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class MemberRestApi {
@@ -23,4 +21,11 @@ public class MemberRestApi {
         Memberdto saved = memberService.save(memeberEntity);
         return ResponseEntity.status(HttpStatus.OK).body(saved);
     }
+    //회원 정보 보기
+    @GetMapping("/account/{account_index}")
+    public ResponseEntity<Memberdto> show(@PathVariable Long account_index){
+        Memberdto memberData = memberService.show(account_index);
+        return ResponseEntity.status(HttpStatus.OK).body(memberData);
+    }
+
 }
