@@ -1,5 +1,6 @@
 package com.example.small_starbucks.entity;
 
+import com.example.small_starbucks.dto.Memberdto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,6 +11,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Getter
 public class Member {
     @Id //id Primary Key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +24,7 @@ public class Member {
     private String email;
     @Column
     private  String password;
-
-
+    public Memberdto toDto(Member entity){
+        return  new Memberdto(entity.getAccount_id(), entity.getName(), entity.getEmail(), entity.getNickname(), entity.getPassword());
+    }
 }

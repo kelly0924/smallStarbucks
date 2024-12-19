@@ -21,5 +21,4 @@ public class Memberdto {
     public Member toEntity(){
         return new Member(account_id, name,email,nickname, password);
     }
-
 }
