@@ -28,4 +28,10 @@ public class MemberRestApi {
         return ResponseEntity.status(HttpStatus.OK).body(memberData);
     }
 
+    @PatchMapping("/account/{account_index}")
+    public  ResponseEntity<Memberdto> update(@PathVariable Long account_index, @RequestBody Memberdto dto){
+        Memberdto updated = memberService.update(account_index, dto);
+        return ResponseEntity.status(HttpStatus.OK).body(updated);
+    }
+
 }
