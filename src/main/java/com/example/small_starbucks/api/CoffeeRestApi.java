@@ -47,4 +47,9 @@ public class CoffeeRestApi {
         return ResponseEntity.status(HttpStatus.OK).body(updated);
     }
 
+    @DeleteMapping("/coffee/{coffee_index}")
+    public ResponseEntity<CoffeeDto> delete(@PathVariable  Long coffee_index){
+        CoffeeDto deleted = coffeeService.delet(coffee_index);
+        return ResponseEntity.status(HttpStatus.OK).body(deleted);
+    }
 }
