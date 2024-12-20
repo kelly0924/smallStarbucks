@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,4 +35,13 @@ public class CoffeeDto {
 
     }
 
+    //entry List를 -> dtoList 변환하기
+    public  static List<CoffeeDto> toDtoList(List<Coffee> entityList){
+        return entityList.stream()
+                .map(coffee ->new CoffeeDto( coffee.getCoffee_index(),
+                        coffee.getMenu(),
+                        coffee.getDetails(),
+                        coffee.getCalories()))
+                .collect(Collectors.toList());
+    }
 }
