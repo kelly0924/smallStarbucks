@@ -1,12 +1,14 @@
 package com.example.small_starbucks.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
 
 @Entity
 @ToString
 @Getter
+@AllArgsConstructor
 public class Coffee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,5 +22,6 @@ public class Coffee {
 
     @Column
     private  String calories;
+
 
 }
