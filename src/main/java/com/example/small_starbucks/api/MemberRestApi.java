@@ -3,6 +3,7 @@ package com.example.small_starbucks.api;
 import com.example.small_starbucks.dto.Memberdto;
 import com.example.small_starbucks.entity.Member;
 import com.example.small_starbucks.service.MemberService;
+import lombok.extern.slf4j.Slf4j;
 import org.antlr.v4.runtime.misc.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Slf4j
 public class MemberRestApi {
     @Autowired
     private  MemberService memberService;
@@ -29,9 +31,13 @@ public class MemberRestApi {
     }
 
     @PatchMapping("/account/{account_index}")
-    public  ResponseEntity<Memberdto> update(@PathVariable Long account_index, @RequestBody Memberdto dto){
+    public ResponseEntity<Memberdto> update(@PathVariable("account_index") Long account_index, @RequestBody Memberdto dto) {
+        log.info("PathVariable: account_index = {}", account_index);
+        log.info("RequestBody: {}", dto);
+
         Memberdto updated = memberService.update(account_index, dto);
         return ResponseEntity.status(HttpStatus.OK).body(updated);
     }
+
 
 }
