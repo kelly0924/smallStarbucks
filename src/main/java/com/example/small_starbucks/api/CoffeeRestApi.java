@@ -40,4 +40,11 @@ public class CoffeeRestApi {
         return ResponseEntity.status(HttpStatus.OK).body(showCoffee);
     }
 
+    //커피 메뉴 수정 하기
+    @PatchMapping("/coffee/{coffee_index}")
+    public ResponseEntity<CoffeeDto> update(@PathVariable Long coffee_index, @RequestBody CoffeeDto dto){
+        CoffeeDto updated = coffeeService.update(coffee_index,dto);
+        return ResponseEntity.status(HttpStatus.OK).body(updated);
+    }
+
 }
