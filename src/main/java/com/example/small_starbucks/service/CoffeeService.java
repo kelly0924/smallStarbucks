@@ -55,4 +55,18 @@ public class CoffeeService {
 
        return dto;
     }
+
+    public CoffeeDto delet(Long coffeeIndex) {
+        //target entity
+        Coffee target = coffeeRepository.findById(coffeeIndex).orElse(null);
+        //삭제 할 coffee 데이터
+        CoffeeDto dto = CoffeeDto.toDtio(target);
+        if(target.getCoffee_index() != coffeeIndex || target.getCoffee_index() == null){
+            throw  new IllegalArgumentException("삭제 가능한 coffee id가 존재 하지 않습니다.");
+        }
+        //삭제 하기
+        coffeeRepository.delete(target);
+
+        return dto;
+    }
 }
