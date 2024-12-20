@@ -42,4 +42,15 @@ public class MemberService {
 
         return updatedMember;
     }
+
+    public Memberdto delete(Long accountIndex) {
+        //target enetity 가져오기
+        Member target = memberRepository.findById(accountIndex).orElse(null);
+        Memberdto deletedDto = target.toDto(target);
+        if(target.getAccount_id() == null || target.getAccount_id() != accountIndex){
+            throw new IllegalArgumentException("회원 id가 존재 하지 않습니다. ");
+        }
+        memberRepository.delete(target);
+        return deletedDto;
+    }
 }
