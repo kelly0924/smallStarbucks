@@ -42,4 +42,17 @@ public class CoffeeService {
         CoffeeDto dto = CoffeeDto.toDtio(entity);
         return dto;
     }
+
+
+    public CoffeeDto update(Long coffeeIndex, CoffeeDto dto) {
+        //target entity
+        Coffee target = coffeeRepository.findById(coffeeIndex).orElse(null);
+        if(target.getCoffee_index() != coffeeIndex || target.getCoffee_index() == null){
+            throw  new IllegalArgumentException("coffee id가 없습니다.");
+        }
+        Coffee entity = dto.toEntity();
+        coffeeRepository.save(entity);
+
+       return dto;
+    }
 }
