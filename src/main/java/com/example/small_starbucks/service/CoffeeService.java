@@ -32,4 +32,14 @@ public class CoffeeService {
         List<CoffeeDto> dtoList =CoffeeDto.toDtoList(entityList);
         return dtoList;
     }
+
+    public CoffeeDto show(Long coffeeIndex) {
+        //entity 가져오기
+        Coffee entity = coffeeRepository.findById(coffeeIndex).orElse(null);
+        if(entity.getCoffee_index() != coffeeIndex || entity.getCoffee_index() ==null){
+            throw new IllegalArgumentException("coffee id가 존재 하지 않습니다. ");
+        }
+        CoffeeDto dto = CoffeeDto.toDtio(entity);
+        return dto;
+    }
 }
