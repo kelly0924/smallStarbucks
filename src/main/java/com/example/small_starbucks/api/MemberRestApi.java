@@ -38,6 +38,11 @@ public class MemberRestApi {
         Memberdto updated = memberService.update(account_index, dto);
         return ResponseEntity.status(HttpStatus.OK).body(updated);
     }
-
+   //회원 정보 삭제 하기
+    @DeleteMapping("/account/{account_index}")
+    public ResponseEntity<Memberdto> delete(@PathVariable Long account_index){
+        Memberdto memberdto = memberService.delete(account_index);
+        return ResponseEntity.status(HttpStatus.OK).body(memberdto);
+    }
 
 }
